@@ -1,0 +1,32 @@
+<html>
+<head>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script type="text/javascript">
+    jQuery(document).ready(function(){
+  		jQuery('#cadastrar').submit(function(){
+  			var dados = "function="+"register_user";
+        dados+="&"+jQuery(this).serialize();
+        //$.get("testeGet");
+  			jQuery.ajax({
+  				type: "POST",
+  				url: "teste.php",
+  				data: dados,
+  				success: function( data )
+  				{
+  					alert( data );
+  				}
+  			});
+  			return false;
+  		});
+  	});
+	</script>
+</head>
+  <body>
+    <form id="cadastrar" >
+      <input type="text" name="nome" maxlength="50" placeholder="nome" required id="nome">
+      <input type="text" name="usuario" maxlength="50" placeholder="Usuário" required id="usuario">
+      <input type="password" name="senha" maxlength="50" placeholder="Senha" required id="senha">
+      <input type="submit" name="cadastrar" class="login loginmodal-submit" value="cadastrar" onclick="cadastrar()">
+    </form>
+  </body>
+</html>
