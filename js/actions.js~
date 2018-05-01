@@ -1,0 +1,86 @@
+/*function vacuolo(){
+  alert(\"FOI!!!\");
+}*/
+
+/*============== CLIQUE SOBRE O BOTÃO IMAGENS ================*/
+$(document).ready(function() {
+  $("#menu-imagem").click(function() {
+    alert("botão imagem pressionado!");
+    $(".galeria_imagens").html("<center>
+        <selection>
+            <div class=\"foto\">
+                <a class=\"example-image-link\" href=\"img/galeria/vaculo/vac_01.jpeg\" data-lightbox=\"example-set\" data-title=\"Click the right half of the image to move forward.\">
+                    <img class=\"example-image img_galeria\" src=\"img/galeria/vaculo/vac_01.jpeg\" alt=\"\" />
+                </a>
+                <p class=\"descricao_foto\">
+              Normalmente uma célula vegetal apresenta apenas um único e grande vacúolo de suco celular.</p>
+            </div>
+            <div class=\"foto\">
+                <a class=\"example-image-link\" href=\"img/galeria/vaculo/vac_10.png\" data-lightbox=\"example-set\" data-title=\"Click the right half of the image to move forward.\">
+                    <img class=\"example-image img_galeria\" src=\"img/galeria/vaculo/vac_10.png\" alt=\"\" />
+                </a>
+                <p class=\"descricao_foto\">
+              Normalmente uma célula vegetal apresenta apenas um único e grande vacúolo de suco celular.</p>
+            </div>
+            <div class=\"foto\">
+                <a class=\"example-image-link\" href=\"img/galeria/vaculo/vac_02.jpeg\" data-lightbox=\"example-set\" data-title=\"Click the right half of the image to move forward.\">
+                    <img class=\"example-image img_galeria\" src=\"img/galeria/vaculo/vac_02.jpeg\" alt=\"\" />
+                </a>
+                <p class=\"descricao_foto\">
+              Normalmente uma célula vegetal apresenta apenas um único e grande vacúolo de suco celular.</p>
+            </div>
+            <div class=\"foto\">
+                <a class=\"example-image-link\" href=\"img/galeria/vaculo/vac_03.jpeg\" data-lightbox=\"example-set\" data-title=\"Click the right half of the image to move forward.\">
+                    <img class=\"example-image img_galeria\" src=\"img/galeria/vaculo/vac_03.jpeg\" alt=\"\" />
+                </a>
+                <p class=\"descricao_foto\">
+              Normalmente uma célula vegetal apresenta apenas um único e grande vacúolo de suco celular.</p>
+            </div>
+            <div class=\"foto\">
+                <a class=\"example-image-link\" href=\"img/galeria/vaculo/vac_04.jpeg\" data-lightbox=\"example-set\" data-title=\"Click the right half of the image to move forward.\">
+                    <img class=\"example-image img_galeria\" src=\"img/galeria/vaculo/vac_04.jpeg\" alt=\"\" />
+                </a>
+                <p class=\"descricao_foto\">
+              Normalmente uma célula vegetal apresenta apenas um único e grande vacúolo de suco celular.</p>
+            </div>
+            <div class=\"foto\">
+                <a class=\"example-image-link\" href=\"img/galeria/vaculo/vac_05.jpeg\" data-lightbox=\"example-set\" data-title=\"Click the right half of the image to move forward.\">
+                    <img class=\"example-image img_galeria\" src=\"img/galeria/vaculo/vac_05.jpeg\" alt=\"\" />
+                </a>
+                <p class=\"descricao_foto\">
+              Normalmente uma célula vegetal apresenta apenas um único e grande vacúolo de suco celular.</p>
+            </div>
+            <div class=\"foto\">
+                <a class=\"example-image-link\" href=\"img/galeria/vaculo/vac_06.jpeg\" data-lightbox=\"example-set\" data-title=\"Click the right half of the image to move forward.\">
+                    <img class=\"example-image img_galeria\" src=\"img/galeria/vaculo/vac_06.jpeg\" alt=\"\" />
+                </a>
+                <p class=\"descricao_foto\">
+              Normalmente uma célula vegetal apresenta apenas um único e grande vacúolo de suco celular.</p>
+            </div>
+            <div class=\"foto\">
+                <a class=\"example-image-link\" href=\"img/galeria/vaculo/vac_07.jpeg\" data-lightbox=\"example-set\" data-title=\"Click the right half of the image to move forward.\">
+                    <img class=\"example-image img_galeria\" src=\"img/galeria/vaculo/vac_07.jpeg\" alt=\"\" />
+                </a>
+                <p class=\"descricao_foto\">
+              Normalmente uma célula vegetal apresenta apenas um único e grande vacúolo de suco celular.</p>
+            </div>
+            <div class=\"foto\">
+                <a class=\"example-image-link\" href=\"img/galeria/vaculo/vac_08.jpeg\" data-lightbox=\"example-set\" data-title=\"Click the right half of the image to move forward.\">
+                    <img class=\"example-image img_galeria\" src=\"img/galeria/vaculo/vac_08.jpeg\" alt=\"\" />
+                </a>
+                <p class=\"descricao_foto\">
+              Normalmente uma célula vegetal apresenta apenas um único e grande vacúolo de suco celular.</p>
+            </div>
+            <div class=\"foto\">
+                <a class=\"example-image-link\" href=\"img/galeria/vaculo/vac_09.jpeg\" data-lightbox=\"example-set\" data-title=\"Click the right half of the image to move forward.\">
+                    <img class=\"example-image img_galeria\" src=\"img/galeria/vaculo/vac_09.jpeg\" alt=\"\" />
+                </a>
+                <p class=\"descricao_foto\">
+              Normalmente uma célula vegetal apresenta apenas um único e grande vacúolo de suco celular.</p>
+            </div>
+        </selection>
+    </center>");
+  });
+
+/*============== CLIQUE SOBRE O BOTÃO IMAGENS ================*/
+});

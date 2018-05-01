@@ -1,0 +1,377 @@
+/*
+---------------------------------------/
+Autor:Júlio Lima Reis;
+Email:juliolimareis@gmail.com;
+-----------------------------------------/
+
+Descrição do documento ------------------/
+  Este documento contem todas a funções da
+  aplicação, que são chamadas por   outros
+  documentos.
+-----------------------------------------/
+licença: GPL;
+----------------------------------------*/
+
+
+//variável que receberá o objeto que esta selecionado
+//este objeto será alterado pela classe 'object_element()'
+var public_object_element;
+
+//------------- OBJETO DO ELEMENTO --------------/
+var object_element = function (title,text,sound_text,annotation,
+                                photo_link,photo_about,photo_desc,video_link)
+{
+  this.title = title;
+  this.text  = text;
+  this.sound_text = sound_text;
+  this.annotation = annotation;
+  //arrays
+  this.photo_link  = photo_link;
+  this.photo_about = photo_about;
+  this.photo_desc  = photo_desc;
+  this.video_link = video_link;
+};
+//------------- FIM --------------/
+
+// --------- GERA OS ELEMENTOS ---------/
+//recebe o objeto de elementos e os altera no HTML
+function gerate_element(object_element){
+  public_object_element = object_element;
+
+  //adiciona o menu de elementos
+  add_menu_element();
+
+  //altera o texto
+  set_text(object_element.text);
+
+  //altera o titulo
+  set_title(object_element.title);
+
+/*
+  //altera a geleria de foto
+  for(var i=0;i<object_element.photo_link.length;i++){
+    gerate_galery_image(object_element.photo_desc[i],
+                          object_element.photo_about[i],object_element.photo_link[i]);
+  }
+
+  //altera a geleria de video
+  for(var i=0;i<object_element.video_link.length;i++){
+    gerate_galery_video(object_element.video_link[i]);
+  }
+*/
+  //altera audio do texto
+  set_audio_text(object_element.sound_text_link);
+
+}
+//--------- FIM -----------/
+
+//----- SET TEXT MAIN -----/
+function set_text(text){
+  $(".text").html(text);
+}
+
+//----- SET TITLE MAIN -----/
+function set_title(title){
+  $(".titulo").html(title);
+}
+
+function add_button_mult(){
+  $(".botoes_mult").html(
+    "<a class=\"btn btn-primary btn-lg anot_botao\"  role=\"button\">Anotações</a>"+
+    "<a class=\"btn btn-primary btn-lg aimagen_botao\"  onclick=\"add_painel_mult(1)\" role=\"button\">Imagens</a>"+
+    "<a class=\"btn btn-primary btn-lg video_botao\"  onclick=\"add_painel_mult(2)\" role=\"button\">Videos</a>"
+  );
+}
+
+function hide_button_mult(){
+  $(".botoes_mult").children().hide();
+}
+
+//------------- GERATE GALERY PHOTO --------------/
+function gerate_galery_image(desc,about,link){
+  $(".galeria_imagem_position").append(
+      "<div class=\"div_galeria_imagem\">"+
+        "<div class=\"foto\">"+
+          "<a class=\"example-image-link\" href=\""+link+"\" data-lightbox=\"example-set\" data-title=\""+desc+"\">"+
+            "<img class=\"example-image img_galeria\" src=\""+link+"\" alt=\"\" />"+
+          "</a>"+
+          "<p class=\"descricao_foto\">"+about+"</p>"+
+        "</div>"+
+      "</div>");
+}
+//------------- FIM GERATE GALERY PHOTO --------------/
+
+
+//------------- GERATE GALERY VIDEO --------------/
+function gerate_galery_video(link_video_l){
+  $(".galeria_video").append(
+    "<div class=\"video\">"+
+      "<div class=\"embed-responsive embed-responsive-16by9\">"+
+        "<iframe allowFullScreen=\"allowFullScreen\" class=\"embed-responsive-item\" src=\""+link_video_l+"\">"+
+        "</iframe>"+
+       "</div>"+
+    "</div>");
+}
+//------------- FIM GERATE GALERY VIDEO --------------/
+
+
+//------------- GERATE AUDIO TEXT --------------/
+function set_audio_text(audio_l_text){
+  $(".position_audio_text").attr("src",audio_l_text);
+}
+//------------- FIM AUDIO TEXT --------------/
+
+
+//------------- GERATE AUDIO ELEMENT --------------/
+function set_audio_element(audio_l2_text){
+  $(".molde_position").attr("src",audio_l2_text);
+}
+//------------- FIM AUDIO ELEMENT --------------/
+
+
+
+
+
+//****************** EVENTS *********************
+
+//------------- ACTION AUDIO --------------/
+//variável que guarda a ativação do audio
+//true = audio esta ligado
+var audio_state=true;
+
+//verifica se o audio esta ligado
+function action_audio(){
+  if(audio_state){
+    //desliga o audio caso esteja ligado
+    audio_state=false;
+  }else{
+    //liga o audio cado esteja desligado
+    audio_state=true;
+  }
+}//--- fim ----/
+
+//audio == 1 significa que é aprimeira vez que o audio foi chamado 
+var audio = 1;
+//ativa um audio, passando o endereço
+function play_audio(link_audio){
+  
+  //verifica se o audio esta ativado
+  if(audio_state){
+    if(audio==1){
+      //instancia o novo endereço de reprodução do audio
+      this.audio = new Audio(link_audio);
+      //dispara o audio
+      this.audio.play();
+    }else{
+      this.audio.pause();
+      //instancia o novo endereço de reprodução do audio
+      this.audio = new Audio(link_audio);
+      //dispara o audio
+      this.audio.play();
+    }
+  }
+}//--- fim ---/
+//--------- END ACTION AUDIO -----------/
+
+//------------- HOVER --------------/
+function hover_element(element_name){
+  //altera a imagem do molde
+  $(".molde_position").attr("src","img/molds/celula-"+element_name+".jpg");
+  //ativa o audio do elemento
+  play_audio("audio/element/"+element_name+".ogg");
+  //altera a imagem da miniatura
+  set_miniature(element_name);
+}
+//------------- FIM HOVER --------------/
+
+
+//------------- PÓS HOVER --------------/
+  //reseta a imagem do molde
+function out_element(){
+  $(".molde_position").attr("src","img/molds/celula-none.jpg");
+}
+//------------- FIM PÓS HOVER --------------/
+
+
+//------------- SET MINIATURE --------------/
+//altera a imagem do molde de acordo com o nome
+function set_miniature(element){
+  $(".miniatura").attr("src","img/elements/"+element+".png");
+}
+//------------- END SET MINIATURE --------------/
+
+
+
+//------------- HIDE CELL--------------/
+function hide_cell(){
+  $(".celula_main").children().hide();
+}
+//------------- FIM --------------/
+
+//------------- SHOW CELL--------------/
+function show_cell(){
+  $(".celula_main").children().show();
+}
+//------------- FIM --------------/
+
+//------------ ANIMATION PÓS CLIQUE -------------/
+function up_miniature(){
+  //esconde a miniatura
+  $(".miniatura").hide();
+
+  //alteras as propriedades do botão voltar
+  $(".miniatura").css({
+    "position": "absolute",
+    "top"     : "183px",
+    "left"    : "180px",
+    "width"   : "400px",
+    "z-index" : "1",
+    "border"  : "none",
+    "height"  : "300px"
+//    "transition" : "all 1s linear"
+//transition: all 2s linear
+  });
+  //animação da miniatura
+  $(".miniatura").fadeIn( "slow" );
+}
+
+
+//--- RESETAS A CONFIGURAÇÕES DA CÉLULA E ELEMENTOS --/
+function down_miniature(){
+//reseta as propriedades do botão voltar
+$(".miniatura").css({
+  "position": "absolute",
+  "top"     : "533px",
+  "left"    : "12px",
+  "width"   : "174px",
+  "z-index" : "10",
+  "height"  : "150px",
+  "border"  : "solid 3px black"
+  });
+  //animação da miniatura
+  $(".miniatura").fadeIn( "slow" );
+}
+//------------ FIM -------------/
+
+
+//--------- AÇÕES DO BOTÃO VOLTAR -----------/
+function action_button_back(){
+  down_miniature();//faz a miniatura voltar ao padão
+  show_cell();//invoca a célula inteira com os elementos
+
+  hide_button_back();//esconde o botão back
+  hide_menu_element();//esconde o menu element
+  hide_button_mult();//esconde os botões de multimidea
+  default_title();//altera o titulo para o inicial
+  default_text();//altera o texto para o inicial
+  default_audio_text();//altera o audio do texto para o inicial
+
+}
+
+
+//invocar botão de voltar
+function add_button_back(){
+  $(".botao_voltar_celula").html("<button class=\"btn_ waves-effect waves-light\""+
+      "onclick=\"action_button_back()\" type=\"submit\" name=\"buttton_back\">voltar</button>");
+}
+
+//remover botão de voltar
+function hide_button_back(){
+  $(".botao_voltar_celula").children().remove();
+}
+
+//remove o menu de elementos
+function hide_menu_element(){
+  $(".navbar_element").children().remove();
+}
+
+//adiciona o menu de multemidea
+//.galeria_imagem_position
+//.galeria_video
+function add_painel_mult(galery){
+  //se a galeria for ==1 invoca a galeria de imagem
+  if(galery==1){
+    $(".painel_div_mult").html(
+      "<div class=\"div_painel_mult\">"+
+          "<div class=\"close_mult\" onclick=\"close_mult()\">Fechar</div>"+
+          "<div class=\"galeria_imagem_position\"></div>"+
+      "</div>"
+    );
+    //altera a geleria de video
+    for(var i=0;i<public_object_element.photo_link.length;i++){
+      gerate_galery_image(public_object_element.photo_desc[i],
+                            public_object_element.photo_about[i],public_object_element.photo_link[i]);
+    }
+  }
+    //se a galeria for ==2 invoca a galeria de video
+  else{
+    $(".painel_div_mult").html(
+      "<div class=\"div_painel_mult\">"+
+          "<div class=\"close_mult\" onclick=\"close_mult()\">Fechar</div>"+
+          "<div class=\"galeria_video\"></div>"+
+      "</div>"
+    );
+    //altera a geleria de video
+    for(var i=0;i<public_object_element.video_link.length;i++){
+      gerate_galery_video(public_object_element.video_link[i]);
+    }
+  }
+}//fim
+
+//remove o menu de multemidea
+function close_mult(){
+  $(".painel_div_mult").children().remove();
+}
+
+//cria o menu de elementos
+function add_menu_element(){
+  $(".navbar_element").html(
+    "<div class=\"tabbable\">"+
+        "<ul class=\"nav nav-tabs\">"+
+            "<li class=\"active\">"+
+                "<a href=\"#tab1\" data-toggle=\"tab\">Seção 1</a>"+
+            "</li>"+
+            "<li>"+
+                "<a href=\"#tab2\" data-toggle=\"tab\">Seção 2</a>"+
+            "</li>"+
+        "</ul>"+
+        "<div class=\"tab-content\">"+
+            "<div class=\"tab-pane active\" id=\"tab1\">"+
+                "<p>Estou na seção 1</p>"+
+            "</div>"+
+            "<div class=\"tab-pane\" id=\"tab2\">"+
+                "<p>Olá, estou na seção 2</p>"+
+            "</div>"+
+        "</div>"+
+    "</div>");
+}
+//------- FIM --------/
+
+//------- AÇÕES DEFAULT --------/
+function default_title(){//altera o titulo para o inicial
+  $(".titulo").html("Célula Vegetal");
+}
+function default_text(){//altera o texto para o inicial
+  $(".text").html("Clique sobre os <span class=\"gloss\" onclick=\"active_gloss('elementos')\">elementos</span>, aqui aparecerá textos de estudo");
+}
+function default_audio_text(){//altera o audio_text para o inicial
+  $(".audio_text").attr("src","");
+}
+//------- AÇOES DE INICIO --------/
+
+//fecha o relatório
+var relat = false;
+function close_relatorio(){
+  //esconde o relatório
+  $("#relatorio").css({
+    "display": "none"});
+  this.relat = false;
+  /*
+  $("#relatorio").children().hide();
+  $("#relatorio").hide();
+  */
+}
+
+/*
+<span class=\"gloss\" onclick=\"active_gloss('elementos')\">
+*/

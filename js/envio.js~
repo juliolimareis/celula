@@ -1,0 +1,115 @@
+/*$("#cadastrar").submit(function(){
+
+  // O form foi submetido...
+  event.preventDefault();
+  $.ajax({
+    type: "POST",
+    url: "BD/register.php",
+    data: $(this).serializeArray(),
+    }).done(function( msg ) {
+      // Recebes aqui o output do teu insert.php
+      alert("Recebido: " + msg);
+
+      // Fazes o que quiseres com os dados que recebes (se precisares de
+         retornar vários dados, sugiro que os retornas com json
+
+    });
+  //alert("deu erro");
+  return false; // Impede a mudança de página
+
+}); */
+
+function set_element(element){
+
+	var requisicaoAjax = iniciaAjax();
+	if (requisicaoAjax) {
+		requisicaoAjax.onreadystatechange = function(){
+			if (requisicaoAjax.readyState == 4) {
+				if(requisicaoAjax.status == 200 || requisicaoAjax.status == 304){
+					//document.getElementById("teste").innerHTML = requisicaoAjax.responseText;
+					//alert(requisicaoAjax.responseText);
+				}else{
+					alert("Problema na comunicação");
+				}
+			}
+		};
+		requisicaoAjax.open("POST", "BD/main_BD.php?set_element", true);
+		requisicaoAjax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		//requisicaoAjax.send("info="+document.getElementById('info'));
+		requisicaoAjax.send("element="+element);
+	}
+}
+
+function cadastra_usuario(){
+
+	var requisicaoAjax = iniciaAjax();
+	if (requisicaoAjax) {
+		requisicaoAjax.onreadystatechange = function(){
+			if (requisicaoAjax.readyState == 4) {
+				if(requisicaoAjax.status == 200 || requisicaoAjax.status == 304){
+					//document.getElementById("teste").innerHTML = requisicaoAjax.responseText;
+					  switch(requisicaoAjax.responseText){
+					    case "1":
+					      alert ("Cadastro Efetuado com Sucesso!");
+					      window.location.href = "localhost";
+					      //$("").html();
+					      break;
+					    case "2":
+					      alert ("O usuário já esta cadastado");
+					      break;
+					    default:
+					    alert ("Ocorreu um erro na conexão!");
+					  }
+				}else{
+					alert("Problema na comunicação");
+				}
+			}
+		};
+		var data= 'nome='+$("#nome").val()+'&usuario='+$("#usuario").val()+'&'+'senha='+$("#senha").val();
+		requisicaoAjax.open("POST", "BD/register.php", true);
+		requisicaoAjax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		//requisicaoAjax.send("info="+document.getElementById('info'));
+		requisicaoAjax.send(data);
+	}
+}
+
+
+
+function active_relatorio(){
+	var requisicaoAjax = iniciaAjax();
+	if (requisicaoAjax) {
+		requisicaoAjax.onreadystatechange = function(){
+			if (requisicaoAjax.readyState == 4) {
+				if(requisicaoAjax.status == 200 || requisicaoAjax.status == 304){
+					document.getElementById("relatorio").innerHTML = requisicaoAjax.responseText;
+				}else{
+					alert("Problema na comunicação");
+				}
+			}
+		};
+		requisicaoAjax.open("POST", "BD/main_BD.php?get_element", true);
+		requisicaoAjax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		requisicaoAjax.send("relatorio="+document.getElementById('relatorio'));
+		//requisicaoAjax.send("element="+element);
+	}
+}
+
+
+
+function iniciaAjax(){
+	var objetoAjax = false;
+	if (window.XMLHttpRequest) {
+		objetoAjax = new XMLHttpRequest();
+	}else if(window.ActiveXObject){
+		try{
+			objetoAjax = new ActiveXObject("Msxml2.XMLHTTP");
+		}catch(e){
+			try{
+				objetoAjax = new ActiveXObject("Microsoft.XMLHTTP");
+			}catch(ex){
+				objetoAjax = false;
+			}
+		}
+	}
+	return objetoAjax;
+}
