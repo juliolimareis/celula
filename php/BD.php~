@@ -1,0 +1,54 @@
+<?php
+	require_once "dataAcess.php";
+	$bd = new dataAcess();
+  
+  function set_cadasro($element){
+    
+  }
+  
+	function set_element($element){
+		//echo $element;
+
+		$bd = new dataAcess();
+		$bd->Executar("update element set ".$element." = (".$element."+1) where id_element = 1");
+
+		//$mysqli = new mysqli("localhost", "root", ".mgKlq3OKB", "celula");
+		//$mysqli->query("update element set ".$_POST['element']." = (".$_POST['element']."+1) where id_element = 1");
+	}
+
+function get_element(){
+		$bd = new dataAcess();
+		$r=mysqli_fetch_assoc($bd->Executar("select * from element where id_element=1"));
+		var_dump($r);
+		//$result = $mysqli->query("select * from element where id_element=1");
+		echo "
+				  <div class=\"close_relatorio\" onclick=\"close_relatorio()\">
+				                <center>Fechar</center>
+				            </div>
+
+				            <center class=\"div_relatorio\">
+				                <h3>Histórico de Acesso</h3>
+				                <h4>O elemento mais estudado atualmente: </h4>
+				                <br>
+				                <h4>Vacuolo teve ".$r['vacu']." Acessos</h4>
+				                <br>
+				                <h4>Cloroplasto teve ".$r['cloro']." Acessos</h4>
+				                <br>
+				                <h4>Mitocôndria teve ".$r['mito']." Acessos</h4>
+				                <br>
+				                <h4>Membrana Celular teve ".$r['memb_celu']." Acessos</h4>
+				                <br>
+				                <h4>Memebrana Nuclear teve ".$r['memb_nucl']." Acessos</h4>
+				                <br>
+				                <h4>Nucléolo teve ".$r['nucl']." Acessos</h4>
+				                <br>
+				                <h4>Retículo Endoplasmático teve ".$r['reti']." Acessos</h4>
+				                <br>
+				                <h4>Complexo de Golgi teve ".$r['comp']." Acessos</h4>
+				                <br>
+				                <h4>Citoplasma teve ".$r['cito']." Acessos</h4>
+				            </center>
+				        </div>
+				";
+}
+?>

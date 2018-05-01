@@ -1,0 +1,19 @@
+<?php
+	require_once "BD.php";
+	//echo "oi";
+	$vet=array_keys($_GET);
+	//set_element("vacu");
+
+
+	if (function_exists($vet[0])) {
+		echo "existe";
+		//set_element("vacu");
+		$vet[0]($_POST['element']);
+		//teste("element");
+		//echo "IMAP functions are available.<br />\n";
+	}
+	
+	
+
+
+?>

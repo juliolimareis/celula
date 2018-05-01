@@ -1,0 +1,15 @@
+<?php
+	require_once "dataAcess.php";
+	$bd = new dataAcess();
+
+  if($bd->Executar("INSERT INTO `usuarios` (`nome`, `usuario`, `senha`) VALUES ('".$_POST['nome']."', '".$_POST['usuario']."', '".$_POST['senha']."');")!=false){
+    echo "1";
+  }
+  elseif($bd->ErrorID()==1062){
+    echo "2";
+    
+  }else{
+    echo "3";
+  }
+		
+?>
