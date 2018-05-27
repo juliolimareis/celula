@@ -204,7 +204,7 @@ Licença: GPL;
             <!-- FIM BOTÃO AUDIO ---->
             <!-- VERSÃO ---->
             <div class="version">
-                <p>Versão - BETA 2.0</p>
+                <p>Versão - 1.0</p>
             </div>
             <!-- FIM VRESÃO --->
             <div class="botao_voltar_celula"></div>
