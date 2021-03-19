@@ -7,7 +7,7 @@ Email:juliolimareis@gmail.com;
 ===========================================
   Este documento contem a aplicação da Cél-
   ula interativa criado no intuito educaci-
-  onal para o primeiro ano do encino médio
+  onal para o primeiro ano do ensino médio
 ===========================================
 Licença: GPL;
 ===========================================
